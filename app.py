@@ -118,7 +118,7 @@ def weekly_forecast(top_quantity_products, df, period):
     st.write(f"Forecasting for {period} week(s)")
 
     # Create empty DataFrame for predictions
-    predictions_df = pd.DataFrame(columns=['DrugName', 'StartDate', 'EndDate', 'QuantityRequired'])
+    predictions_df = pd.DataFrame(columns=['DrugName',  'QuantityRequired', 'StartDate', 'EndDate',])
     predictions_df, _, _ = Forecasting_top_sku(period, predictions_df, 'W', top_quantity_products, df)
     plot_forecast_barchart(predictions_df, f"Weekly Forecast for Top Products (Period: {period} weeks)")
     st.write(predictions_df)
@@ -128,7 +128,7 @@ def monthly_forecast(top_quantity_products, df, period):
     st.write(f"Forecasting for {period} month(s)")
 
     # Create empty DataFrame for predictions
-    predictions_df = pd.DataFrame(columns=['DrugName', 'StartDate', 'EndDate', 'QuantityRequired'])
+    predictions_df = pd.DataFrame(columns=['DrugName',  'QuantityRequired', 'StartDate', 'EndDate',])
     predictions_df, _, _ = Forecasting_top_sku(period, predictions_df, 'M', top_quantity_products, df)
     plot_forecast_barchart(predictions_df, f"Monthly Forecast for Top Products (Period: {period} months)")
     st.write(predictions_df)
