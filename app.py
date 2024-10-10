@@ -37,10 +37,6 @@ def read_and_display_data(file_path):
     st.subheader("Number of Unique Values per Column")
     st.write(df.nunique())
 
-    # Check for duplicate rows
-    st.subheader("Number of Duplicate Rows")
-    st.write(df.duplicated().sum())
-
     # Rename necessary columns for Prophet
     df = df.rename(columns={'Dateofbill': 'ds', 'Quantity': 'y'})
 
@@ -69,7 +65,6 @@ def display_top_quantity_products(df):
     top_quantity = df.groupby(['DrugName'])['y'].sum().reset_index()
     top_quantity_products = top_quantity.sort_values(by='y', ascending=False).head(20)
     
-    st.subheader("Top 20 Products by Quantity Sold")
     st.write(top_quantity_products)
     
     return top_quantity_products
@@ -96,9 +91,9 @@ def Forecasting_top_sku(period: int, predictions_df: pd.DataFrame, freq: str, to
 
         predicted_row = pd.DataFrame({
             'DrugName': [drug_name],
+            'QuantityRequired': [quantity_required],
             'StartDate': [start_date],
-            'EndDate': [end_date],
-            'QuantityRequired': [quantity_required]
+            'EndDate': [end_date]
         })
         predictions_df = pd.concat([predictions_df, predicted_row], ignore_index=True)
 
